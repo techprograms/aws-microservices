@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/movies")
 public class MovieController {
+
     private final MovieService service;
 
     public MovieController(MovieService service) {
@@ -20,12 +21,13 @@ public class MovieController {
     }
 
     @GetMapping
-    public List<MovieDto> getAll() {
+    public List<MovieDto> getAll(){
         return this.service.getAll();
     }
 
     @GetMapping("{genre}")
-    public List<MovieDto> getAllByGenre(@PathVariable Genre genre) {
-        return this.service.getAll();
+    public List<MovieDto> getAllByGenre(@PathVariable Genre genre){
+        return this.service.getAll(genre);
     }
+
 }

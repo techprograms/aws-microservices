@@ -29,4 +29,5 @@ public class MovieService {
                 .map(EntityDtoMapper::toDto)
                 .toList();
     }
+
 }

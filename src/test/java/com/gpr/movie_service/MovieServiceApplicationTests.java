@@ -27,6 +27,12 @@ class MovieServiceApplicationTests {
     private TestRestTemplate template;
 
     @Test
+    public void health() {
+        var responseEntity = this.template.getForEntity("/actuator/health", Object.class);
+        Assertions.assertTrue(responseEntity.getStatusCode().is2xxSuccessful());
+    }
+
+    @Test
     void allMovies() {
         var movies = getMovies("/api/movies");
         Assertions.assertEquals(6, movies.size());
@@ -35,8 +41,8 @@ class MovieServiceApplicationTests {
     @Test
     void moviesByGenre() {
         var movies = getMovies("/api/movies/ACTION");
-        Assertions.assertEquals(6, movies.size());
-        //Assertions.assertTrue(movies.stream().map(MovieDto::genre).allMatch(Genre.ACTION::equals));
+        Assertions.assertEquals(3, movies.size());
+        Assertions.assertTrue(movies.stream().map(MovieDto::genre).allMatch(Genre.ACTION::equals));
     }
 
     private List<MovieDto> getMovies(String uri) {

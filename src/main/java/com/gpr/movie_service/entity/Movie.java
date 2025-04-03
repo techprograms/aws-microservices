@@ -8,10 +8,12 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Movie {
+
     @Id
     private Integer id;
     private String title;
     private Integer releaseYear;
+
     @Enumerated(EnumType.STRING)
     private Genre genre;
 
